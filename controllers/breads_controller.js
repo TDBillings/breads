@@ -16,19 +16,6 @@ router.get('/new', (req, res) => {
     res.render('new')
 })
 
-
-// Show
-router.get('/:arrayIndex', (req, res) => {
-    if (Bread[req.params.arrayIndex]) {
-        res.render('Show', {
-            bread: (Bread[req.params.arrayIndex])
-        })
-    } else {
-        res.render('Error404')
-    }
-    
-})
-
 // Create
 router.post('/', (req, res) => {
     if (!req.body.image) {
@@ -42,5 +29,24 @@ router.post('/', (req, res) => {
     Bread.push(req.body)
     res.redirect('/breads')
 })
+
+// Show
+router.get('/:arrayIndex', (req, res) => {
+    if (Bread[req.params.arrayIndex]) {
+        res.render('Show', {
+            bread: (Bread[req.params.arrayIndex]),
+            index: req.params.arrayIndex
+        })
+    } else {
+        res.render('Error404')
+    }
+    
+})
+
+// DELETE
+router.delete('/:indexArray', (req, res) => {
+    Bread.splice(req.params.indexArray, 1)
+    res.status(303).redirect('/breads')
+  })
 
 module.exports = router
