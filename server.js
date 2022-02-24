@@ -3,6 +3,7 @@ require('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
 const methodOverride = require('method-override')
+const mongoose = require('mongoose')
 
 
 // Middleware
@@ -26,6 +27,11 @@ app.use('/breads', breadsController)
 app.get('*', (req, res) => {
     res.render('Error404')
   })
+
+// database
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+  .then(() => console.log('db connected'))
+  .catch(e => console.log(e))
 
 app.listen(PORT, () => {
     console.log("nomming at port", PORT)
