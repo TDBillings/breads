@@ -28,7 +28,18 @@ function edit ({ bread }) {
             id="hasGluten"
             defaultChecked={bread.hasGluten}
             />
-          <br />
+          <label htmlFor='baker'>Baker</label>
+            <select name='baker' id='baker' defaultValue={bread.baker}>
+              <option value="Shiv">Shiv</option>
+              <option value="Roman">Roman</option>
+              <option value="Logan">Logan</option>
+              <option value="Greg">Greg</option>
+              <option value="Tom">Tom</option>
+              <option value="Kendall">Kendall</option>
+              <option value="Conner">Conner</option>
+              <option value="Willa">Willa</option>
+            </select>
+          <br/>
           <input type="submit"/>
         </form>
       </Default>

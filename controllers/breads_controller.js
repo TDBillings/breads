@@ -28,7 +28,8 @@ router.post('/', (req, res) => {
         req.body.hasGluten = false
     }
     Bread.create(req.body)
-    res.redirect('/breads')
+    .then(_ => res.redirect('/breads'))
+    .catch(e => res.render('error404'))
 })
 
 // EDIT
